@@ -1,0 +1,15 @@
+{
+  "name": "saloni-enterprise",
+  "version": "1.0.0",
+  "description": "Steel business website — root workspace",
+  "scripts": {
+    "client": "npm run dev --prefix client",
+    "server": "node server/index.js",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "install:all": "npm install && npm install --prefix client && npm install --prefix server",
+    "build": "npm run build --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
