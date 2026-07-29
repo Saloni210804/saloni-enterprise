@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useQuoteModal } from '../context/QuoteModalContext'
 
@@ -116,7 +116,7 @@ export default function AboutSection() {
  <div className="ab-img-float">
  <div className="ab-img-frame">
  <img
- src="/ranjit.new.jpeg"
+ src="/ranjit.jpeg"
  alt="Ranjit Kumar Shaw, Founder of Saloni Enterprise"
  className="ab-img"
  loading="lazy"

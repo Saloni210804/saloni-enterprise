@@ -161,35 +161,35 @@ module.exports = async function handler(req, res) {
       return res.status(500).json({ success: false, message: 'Failed to save lead. Please try again.' })
     }
 
-    /* 2 — Send Gmail notification (non-blocking, won't fail the response) */
+    /* 2 — Send Gmail notification */
     try {
-      const smtpUser = process.env.SMTP_USER
-      const smtpPass = process.env.SMTP_PASS
-      const mailTo   = process.env.MAIL_TO
+      const smtpUser = process.env.SMTP_USER || 'ranjit.sr2@gmail.com'
+      const smtpPass = process.env.SMTP_PASS || 'sxbf hibv auoj pcqw'
+      const mailTo   = process.env.MAIL_TO   || 'ranjit.sr2@gmail.com'
 
-      if (smtpUser && smtpPass && mailTo) {
-        const transporter = nodemailer.createTransport({
-          host:   process.env.SMTP_HOST   || 'smtp.gmail.com',
-          port:   parseInt(process.env.SMTP_PORT || '587', 10),
-          secure: process.env.SMTP_SECURE === 'true',
-          auth:   { user: smtpUser, pass: smtpPass },
-        })
+      const transporter = nodemailer.createTransport({
+        host:   'smtp.gmail.com',
+        port:   587,
+        secure: false,
+        auth:   { user: smtpUser, pass: smtpPass },
+        tls:    { rejectUnauthorized: false },
+      })
 
-        await transporter.sendMail({
-          from:    `"Saloni Enterprise Website" <${smtpUser}>`,
-          to:      mailTo,
-          subject: `🔔 New Quote: ${savedLead.name} — ${serviceValue}`,
-          text:    `New enquiry from ${savedLead.name} (${savedLead.phone}) for ${serviceValue}. Check MongoDB for full details.`,
-          html:    buildEmailHTML(savedLead),
-          replyTo: savedLead.email || undefined,
-        })
-        console.log(`📧 Email sent → ${mailTo}`)
-      } else {
-        console.log('📧 Email skipped — SMTP env vars not configured on Vercel')
-      }
+      await transporter.verify()
+      console.log('📧 SMTP verified, sending email...')
+
+      await transporter.sendMail({
+        from:    `"Saloni Enterprise Website" <${smtpUser}>`,
+        to:      mailTo,
+        subject: `🔔 New Quote: ${savedLead.name} — ${serviceValue}`,
+        text:    `New enquiry from ${savedLead.name} (${savedLead.phone}) for ${serviceValue}. Check MongoDB for full details.`,
+        html:    buildEmailHTML(savedLead),
+        replyTo: savedLead.email || undefined,
+      })
+      console.log(`📧 Email sent → ${mailTo}`)
     } catch (emailErr) {
       // Non-fatal — lead already saved to DB
-      console.warn('Email error (non-fatal):', emailErr.message)
+      console.error('📧 Email error:', emailErr.message, emailErr.code || '')
     }
 
     /* 3 — Return success */

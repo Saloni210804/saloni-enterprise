@@ -1,7 +1,7 @@
 import { useQuoteModal } from '../context/QuoteModalContext'
 
-const PHONE = '[Your Phone Number]'
-const WHATSAPP_LINK = 'https://wa.me/918013363204'
+const PHONE = '+918013363204'
+const WHATSAPP_LINK = 'https://wa.me/918013363204?text=Hi%2C+I%27d+like+to+enquire+about+your+services.'
 
 export default function FloatingBar() {
  const { openModal } = useQuoteModal()

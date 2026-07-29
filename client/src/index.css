@@ -493,11 +493,7 @@ a { text-decoration: none; color: inherit; }
   transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s;
 }
 
-.feature-card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-  transform: translateY(-2px);
-  border-color: var(--color-accent);
-}
+
 
 .feature-card__icon { font-size: 28px; margin-bottom: 14px; }
 
@@ -526,11 +522,7 @@ a { text-decoration: none; color: inherit; }
   transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
 }
 
-.product-card:hover {
-  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-  transform: translateY(-3px);
-  border-color: var(--color-accent);
-}
+
 
 .product-card__image {
   height: 180px;
@@ -599,11 +591,7 @@ a { text-decoration: none; color: inherit; }
   background: var(--color-surface);
 }
 
-.brand-badge:hover {
-  color: var(--color-accent);
-  border-color: var(--color-accent);
-  background: var(--color-accent-light);
-}
+
 
 /* ---------- How It Works ---------- */
 .how-it-works__steps {
@@ -1839,9 +1827,7 @@ a { text-decoration: none; color: inherit; }
   transition: transform 8s ease;
 }
 
-.hero-v2__image-wrap:hover .hero-v2__image {
-  transform: scale(1.03);
-}
+/* hero image — no hover zoom (non-clickable) */
 
 .hero-v2__image-overlay {
   position: absolute;
@@ -2741,7 +2727,7 @@ a { text-decoration: none; color: inherit; }
   transition: transform 6s ease;
 }
 
-.sp-intro__img-wrap:hover .sp-intro__img { transform: scale(1.04); }
+/* service intro image — no hover zoom (non-clickable) */
 
 .sp-intro__badge {
   position: absolute;
@@ -2787,11 +2773,7 @@ a { text-decoration: none; color: inherit; }
   transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
 }
 
-.sp-why-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.09);
-  border-color: rgba(200, 162, 77, 0.35);
-}
+
 
 .sp-why-icon {
   width: 48px;
@@ -2941,11 +2923,7 @@ a { text-decoration: none; color: inherit; }
   cursor: default;
 }
 
-.sp-app-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
-  border-color: rgba(200, 162, 77, 0.3);
-}
+
 
 .sp-app-icon {
   width: 52px;

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+﻿import { Link } from 'react-router-dom'
 import { useQuoteModal } from '../context/QuoteModalContext'
 
 /* ─── Business constants ─────────────────────────────────── */
@@ -119,7 +119,7 @@ export default function Footer() {
 
  {/* Founder chip */}
  <div className="pf-founder">
- <img src="/ranjit.new.jpeg" alt="Ranjit Kumar Shaw" className="pf-founder__photo" aria-hidden="true" />
+ <img src="/ranjit.jpeg" alt="Ranjit Kumar Shaw" className="pf-founder__photo" aria-hidden="true" />
  <div>
  <div className="pf-founder__name">{FOUNDER}</div>
  <div className="pf-founder__role">Founder, {BUSINESS_NAME}</div>
