@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { getService, getAllServices, getRelatedServices } from '../data/servicesData'
 import { useQuoteModal } from '../context/QuoteModalContext'
 
-const WA_NUMBER = '91XXXXXXXXXX'
+const WA_NUMBER = '918013363204'
 
 /* ─── Micro-animation variants ──────────────────────────── */
 const fadeUp = {

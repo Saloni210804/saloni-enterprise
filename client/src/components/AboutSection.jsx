@@ -116,7 +116,7 @@ export default function AboutSection() {
  <div className="ab-img-float">
  <div className="ab-img-frame">
  <img
- src="/ranjit.jpeg"
+ src="/ranjit.new.jpeg"
  alt="Ranjit Kumar Shaw, Founder of Saloni Enterprise"
  className="ab-img"
  loading="lazy"

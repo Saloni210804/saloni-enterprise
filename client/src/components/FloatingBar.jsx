@@ -1,7 +1,7 @@
-﻿import { useQuoteModal } from '../context/QuoteModalContext'
+import { useQuoteModal } from '../context/QuoteModalContext'
 
 const PHONE = '[Your Phone Number]'
-const WHATSAPP_LINK = 'https://wa.me/91XXXXXXXXXX'
+const WHATSAPP_LINK = 'https://wa.me/918013363204'
 
 export default function FloatingBar() {
  const { openModal } = useQuoteModal()
@@ -9,7 +9,7 @@ export default function FloatingBar() {
  return (
  <div className="floating-bar">
  <a href={`tel:${PHONE}`} className="floating-bar__btn floating-bar__call">
- 📞 Call
+ ?? Call
  </a>
  <button
  className="floating-bar__btn floating-bar__whatsapp"
@@ -17,7 +17,7 @@ export default function FloatingBar() {
  openModal({ product: '', sourceButton: 'Mobile Floating Bar, WhatsApp', pageUrl: window.location.href })
  }
  >
- 💬 Get Quote
+ ?? Get Quote
  </button>
  </div>
  )

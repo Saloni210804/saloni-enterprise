@@ -1,12 +1,12 @@
-﻿import { useState } from 'react'
+﻿﻿﻿import { useState } from 'react'
 import { useQuoteModal } from '../context/QuoteModalContext'
 import ScrollReveal from '../components/ScrollReveal'
 import SectionLabel from '../components/SectionLabel'
 
-const PHONE = '[Your Phone Number]'
-const EMAIL = '[Your Email]'
-const ADDRESS = '[Full Address], , – [PIN]'
-const WHATSAPP = 'https://wa.me/91XXXXXXXXXX'
+const PHONE = '+91 80133 63204'
+const EMAIL = 'salonienterprise21@gmail.com'
+const ADDRESS = '53 Adarsh Nagar, P.O. Danesh Sk. Lane, Howrah - 711109'
+const WHATSAPP = 'https://wa.me/918013363204'
 
 const SERVICE_AREAS = ['','','','','','Hooghly','Nadia','Burdwan']
 
@@ -39,13 +39,13 @@ export default function Contact() {
  })
  const data = await res.json()
  if (res.ok && data.success) {
- setStatus({ type: 'success', msg: '✅ Message sent! We\'ll get back to you shortly.' })
+ setStatus({ type: 'success', msg: '? Message sent! We\'ll get back to you shortly.' })
  setForm({ name: '', phone: '', email: '', product: '', message: '' })
  } else {
- setStatus({ type: 'error', msg: `❌ ${data.message || 'Something went wrong.'}` })
+ setStatus({ type: 'error', msg: `? ${data.message || 'Something went wrong.'}` })
  }
  } catch {
- setStatus({ type: 'error', msg: '❌ Could not connect. Please call us directly.' })
+ setStatus({ type: 'error', msg: '? Could not connect. Please call us directly.' })
  } finally {
  setLoading(false)
  }
@@ -74,11 +74,11 @@ export default function Contact() {
  <h2 className="section-headline" style={{ marginBottom: '28px' }}>We're Easy to Reach</h2>
 
  {[
- { icon: '📍', label: 'Address', content: <p>{ADDRESS}</p> },
- { icon: '📞', label: 'Phone', content: <a href={`tel:${PHONE}`}>{PHONE} (click to call)</a> },
- { icon: '💬', label: 'WhatsApp', content: <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">[Your Number], chat now</a> },
- { icon: '✉️', label: 'Email', content: <a href={`mailto:${EMAIL}`}>{EMAIL}</a> },
- { icon: '🕐', label: 'Hours', content: <><p>Monday–Saturday, 9:00 AM – 7:00 PM</p><p>Sunday: 10:00 AM – 2:00 PM (limited)</p></> },
+ { icon: '??', label: 'Address', content: <p>{ADDRESS}</p> },
+ { icon: '??', label: 'Phone', content: <a href={`tel:${PHONE}`}>{PHONE} (click to call)</a> },
+ { icon: '??', label: 'WhatsApp', content: <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">[Your Number], chat now</a> },
+ { icon: '??', label: 'Email', content: <a href={`mailto:${EMAIL}`}>{EMAIL}</a> },
+ { icon: '??', label: 'Hours', content: <><p>Monday�Saturday, 9:00 AM � 7:00 PM</p><p>Sunday: 10:00 AM � 2:00 PM (limited)</p></> },
  ].map((d, i) => (
  <div className="contact__detail" key={i}>
  <span className="contact__detail-icon">{d.icon}</span>
@@ -97,12 +97,12 @@ export default function Contact() {
  </div>
 
  <div style={{ display: 'flex', gap: '12px', marginTop: '28px', flexWrap: 'wrap' }}>
- <a href={`tel:${PHONE}`} className="btn btn--primary">📞 Call Now</a>
+ <a href={`tel:${PHONE}`} className="btn btn--primary">?? Call Now</a>
  <button
  className="btn btn--accent"
  onClick={() => quote('', 'Contact Page, Quick Quote Button')}
  >
- 📋 Quick Quote
+ ?? Quick Quote
  </button>
  </div>
  </div>
@@ -176,14 +176,14 @@ export default function Contact() {
  <ScrollReveal>
  <div className="contact__map" style={{ height: '420px', fontSize: '15px' }}>
  <div>
- <div style={{ fontSize: '40px', marginBottom: '16px' }}>🗺️</div>
+ <div style={{ fontSize: '40px', marginBottom: '16px' }}>???</div>
  <strong style={{ color: 'var(--color-primary)', fontSize: '16px' }}>Google Map Embed</strong>
  <p style={{ marginTop: '12px', maxWidth: '400px', lineHeight: '1.6', color: 'var(--color-muted)' }}>
  Replace this placeholder with your Google Maps{' '}
  <code style={{ background: 'var(--color-border)', padding: '2px 6px', borderRadius: '4px', fontSize: '13px' }}>&lt;iframe&gt;</code>{' '}
  embed code in Contact.jsx.
  </p>
- <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="btn btn--secondary" style={{ marginTop: '16px', display: 'inline-flex' }}>
+ <a href="https://www.google.com/maps/place/Saloni+Enterprise/@22.5691959,88.2662816,16z/data=!4m10!1m2!2m1!1s53+Adarsh+Nagar,+Danesh+Sk.+Lane,+,+West+Bengal+711109!3m6!1s0x3a02798750f28b5b:0xd9f54ab468b6179f!8m2!3d22.5691959!4d88.2758088" target="_blank" rel="noopener noreferrer" className="btn btn--secondary" style={{ marginTop: '16px', display: 'inline-flex' }}>
  Open in Google Maps
  </a>
  </div>

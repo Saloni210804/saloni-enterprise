@@ -9,6 +9,10 @@
     "install:all": "npm install && npm install --prefix client && npm install --prefix server",
     "build": "npm run build --prefix client"
   },
+  "dependencies": {
+    "mongoose": "^8.4.4",
+    "nodemailer": "^6.9.13"
+  },
   "devDependencies": {
     "concurrently": "^8.2.2"
   }

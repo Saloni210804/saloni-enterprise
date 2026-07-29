@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { useQuoteModal } from '../context/QuoteModalContext'
 
 /* ─── WhatsApp number ───────────────────────────────────── */
-const WA_NUMBER = '91XXXXXXXXXX'
+const WA_NUMBER = '918013363204'
 
 /* ─── Service data ──────────────────────────────────────── */
 const SERVICES = [
