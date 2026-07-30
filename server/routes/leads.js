@@ -191,36 +191,41 @@ router.post('/', async (req, res) => {
   }
 
   // 2 ── Send email notification (non-blocking)
-  try {
-    const smtpUser = process.env.SMTP_USER
-    const smtpPass = process.env.SMTP_PASS
-    const mailTo   = process.env.MAIL_TO
+  // 2 ── Send email notification (non-blocking)
+try {
+  console.log("=== EMAIL DEBUG ===")
+  console.log("SMTP_USER:", process.env.SMTP_USER)
+  console.log("MAIL_TO:", process.env.MAIL_TO)
+  console.log("SMTP_PASS exists:", !!process.env.SMTP_PASS)
 
-    if (smtpUser && smtpPass && mailTo && !smtpPass.includes('YOUR_16')) {
-      const transporter = nodemailer.createTransport({
-        host:   process.env.SMTP_HOST   || 'smtp.gmail.com',
-        port:   parseInt(process.env.SMTP_PORT || '587', 10),
-        secure: process.env.SMTP_SECURE === 'true',
-        auth:   { user: smtpUser, pass: smtpPass },
-      })
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST || "smtp.gmail.com",
+    port: Number(process.env.SMTP_PORT) || 587,
+    secure: false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  })
 
-      await transporter.sendMail({
-        from:    `"Saloni Enterprise Website" <${process.env.MAIL_FROM || smtpUser}>`,
-        to:      mailTo,
-        subject: `🔔 New Quote: ${savedLead.name} — ${serviceValue}`,
-        text:    buildEmailText(savedLead),
-        html:    buildEmailHTML(savedLead),
-        replyTo: savedLead.email || undefined,
-      })
+  await transporter.verify()
+  console.log("✅ SMTP Connected")
 
-      console.log(`📧 Email sent → ${mailTo}`)
-    } else {
-      console.log('📧 Email skipped (SMTP not configured)')
-    }
-  } catch (emailErr) {
-    // Non-fatal — lead already saved to DB
-    console.warn('Email notification failed:', emailErr.message)
-  }
+  const info = await transporter.sendMail({
+    from: `"Saloni Enterprise Website" <${process.env.SMTP_USER}>`,
+    to: process.env.MAIL_TO,
+    subject: `🔔 New Quote: ${savedLead.name} — ${serviceValue}`,
+    text: buildEmailText(savedLead),
+    html: buildEmailHTML(savedLead),
+    replyTo: savedLead.email || undefined,
+  })
+
+  console.log("✅ Email sent:", info.messageId)
+
+} catch (err) {
+  console.error("❌ EMAIL ERROR:")
+  console.error(err)
+}
 
   // 3 ── Return success + WhatsApp URL so client can redirect instantly
   return res.status(201).json({

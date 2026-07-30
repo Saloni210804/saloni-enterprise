@@ -163,9 +163,18 @@ module.exports = async function handler(req, res) {
 
     /* 2 — Send Gmail notification */
     try {
-      const smtpUser = process.env.SMTP_USER || 'ranjit.sr2@gmail.com'
-      const smtpPass = process.env.SMTP_PASS || 'sxbf hibv auoj pcqw'
-      const mailTo   = process.env.MAIL_TO   || 'ranjit.sr2@gmail.com'
+const smtpUser = process.env.SMTP_USER;
+const smtpPass = process.env.SMTP_PASS?.replace(/\s/g, "");
+const mailTo = process.env.MAIL_TO;
+
+if (!smtpUser || !smtpPass || !mailTo) {
+  throw new Error("SMTP environment variables are missing.");
+}
+console.log("SMTP_HOST:", process.env.SMTP_HOST);
+console.log("SMTP_PORT:", process.env.SMTP_PORT);
+console.log("SMTP_USER:", process.env.SMTP_USER);
+console.log("MAIL_TO:", process.env.MAIL_TO);
+console.log("SMTP_PASS Present:", !!process.env.SMTP_PASS);
 
       const transporter = nodemailer.createTransport({
         host:   'smtp.gmail.com',
@@ -188,9 +197,14 @@ module.exports = async function handler(req, res) {
       })
       console.log(`📧 Email sent → ${mailTo}`)
     } catch (emailErr) {
-      // Non-fatal — lead already saved to DB
-      console.error('📧 Email error:', emailErr.message, emailErr.code || '')
-    }
+  console.error("========== EMAIL ERROR ==========");
+  console.error(emailErr);
+  console.error("Message:", emailErr.message);
+  console.error("Code:", emailErr.code);
+  console.error("Response:", emailErr.response);
+  console.error("ResponseCode:", emailErr.responseCode);
+  console.error("================================");
+}
 
     /* 3 — Return success */
     return res.status(201).json({

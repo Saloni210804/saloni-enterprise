@@ -67,7 +67,7 @@ export default function QuoteModal() {
   const handleChange = (e) =>
     setForm(prev => ({...prev, [e.target.name]: e.target.value }))
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault()
     const digits = form.phone.trim().replace(/\D/g, '')
     if (!form.name.trim()) {
@@ -98,11 +98,27 @@ export default function QuoteModal() {
     setDone(true)
 
     // Save to backend silently
-    fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    }).catch(() => {})
+    
+ try {
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await res.json();
+
+  console.log("API Response:", data);
+
+  if (!res.ok) {
+    console.error("Backend Error:", data);
+  }
+} catch (err) {
+  console.error("Fetch Error:", err);
+}
+
 
   }, [form, config])
 

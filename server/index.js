@@ -1,10 +1,20 @@
 const express = require('express')
 const cors = require('cors')
-const dotenv = require('dotenv')
+
 const mongoose = require('mongoose')
 
-dotenv.config()
+const dotenv = require('dotenv')
+const path = require('path')
 
+dotenv.config({
+  path: path.join(__dirname, '.env'),
+})
+console.log("===== ENV CHECK =====");
+console.log("MONGODB_URI:", process.env.MONGODB_URI);
+console.log("SMTP_USER:", process.env.SMTP_USER);
+console.log("MAIL_TO:", process.env.MAIL_TO);
+console.log("SMTP_PASS exists:", !!process.env.SMTP_PASS);
+console.log("=====================");
 const app = express()
 const PORT = process.env.PORT || 5000
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/steel_business'
